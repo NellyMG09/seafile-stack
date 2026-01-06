@@ -1,0 +1,15 @@
+# Nunca subas tu .env real
+.env
+
+# Logs de nginx
+nginx/logs/
+*.log
+
+# Certificados (no los metas al repo)
+certs/
+*.pem
+*.key
+
+# Archivos temporales
+.DS_Store
+Thumbs.db

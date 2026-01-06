@@ -1,0 +1,36 @@
+name: Deploy via Portainer Webhook
+
+on:
+  push:
+    branches: [ "main" ]           
+    paths:
+      - "seafile-stack/**"          # limita el trigger a los archivos del stack
+      - ".github/workflows/**"
+
+concurrency:
+  group: deploy-portainer-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  trigger-portainer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Validar secret
+        shell: bash
+        run: |
+          if [ -z "${{ secrets.PORTAINER_WEBHOOK_URL }}" ]; then
+            echo "::error::El secret PORTAINER_WEBHOOK_URL no está definido en el repositorio."
+            exit 1
+          fi
+
+      - name: Llamar webhook de Portainer
+        env:
+          PORTAINER_WEBHOOK_URL: ${{ secrets.PORTAINER_WEBHOOK_URL }}
+        shell: bash
+        run: |
+          set -eEo pipefail
+          echo "Llamando al webhook de Portainer..."
+          # Usa -f para fallar en códigos HTTP 4xx/5xx, -S para mostrar errores, -L por si hay redirects, y -s para salida silenciosa
+          curl -fSL -X POST "$PORTAINER_WEBHOOK_URL"
+          echo "Webhook enviado correctamente."

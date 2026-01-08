@@ -40,4 +40,5 @@ jobs:
           push: true
           tags: |
             ${{ env.IMAGE }}:latest
+            ${{ env.IMAGE }}:main
             ${{ env.IMAGE }}:${{ github.sha }}

@@ -94,7 +94,7 @@ services:
       retries: 5
 
   nginx:
-    image: nginx:stable-alpine
+    image: ghcr.io/bitalamx4/seafile-nginx:main
     restart: unless-stopped
     depends_on:
       - seafile
@@ -103,7 +103,6 @@ services:
       - "9455:9455"   # Seafile (HTTPS terminado en Nginx)
       - "9458:9458"   # OnlyOffice (HTTPS terminado en Nginx)
     volumes:
-      - ./nginx/conf.d:/etc/nginx/conf.d:ro
       - /etc/letsencrypt:/etc/letsencrypt:ro
       - ./nginx/logs:/var/log/nginx
     healthcheck:

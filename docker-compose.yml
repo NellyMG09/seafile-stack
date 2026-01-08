@@ -94,7 +94,7 @@ services:
       retries: 5
 
   nginx:
-    image: ghcr.io/nellymg09/seafile-nginx:main
+    image: ghcr.io/nellymg09/seafile-nginx:latest
     restart: unless-stopped
     depends_on:
       - seafile

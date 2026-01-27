@@ -62,7 +62,6 @@ services:
       - SEAFILE_ADMIN_PASSWORD=${SEAFILE_ADMIN_PASSWORD}
     volumes:
       - seafile_data_prod:/shared
-      - ./seafile/conf:/shared/seafile/conf
     healthcheck:
       test: ["CMD", "curl", "-fsS", "http://localhost/"]
       interval: 30s

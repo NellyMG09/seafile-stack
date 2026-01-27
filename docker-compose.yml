@@ -45,15 +45,8 @@ services:
       # ---- DB host/root ----
       - DB_HOST=db
       - DB_ROOT_PASSWD=${DB_ROOT_PASSWD}
-      - TIME_ZONE=${TIMEZONE}
-
-      # ---- Credenciales del usuario de aplicación ----
-      - MYSQL_USER=${SEAFILE_DB_USER}
-      - MYSQL_USER_PASSWORD=${SEAFILE_DB_PASS}
-      - MYSQL_PASSWORD=${SEAFILE_DB_PASS}
       - DB_USER=${SEAFILE_DB_USER}
       - DB_PASSWD=${SEAFILE_DB_PASS}
-      - MYSQL_USER_HOST=%
 
       # ---- Bases de datos ----
       - CCNET_DB=ccnet_db
@@ -61,16 +54,12 @@ services:
       - SEAHUB_DB=seahub_server
 
       # ---- Host/URLs/admin ----
+      - TIME_ZONE=${TIMEZONE}
       - SEAFILE_SERVER_HOSTNAME=${DOMAIN}
       - SEAFILE_SERVER_PROTOCOL=https
       - SEAFILE_SERVER_LETSENCRYPT=false
       - SEAFILE_ADMIN_EMAIL=${SEAFILE_ADMIN_EMAIL}
       - SEAFILE_ADMIN_PASSWORD=${SEAFILE_ADMIN_PASSWORD}
-
-      # ---- Para que Seahub lea del entorno (seahub_settings.py) ----
-      - SEAFILE_DB_USER=${SEAFILE_DB_USER}
-      - SEAFILE_DB_PASS=${SEAFILE_DB_PASS}
-      - DOMAIN=${DOMAIN}
     volumes:
       - seafile_data_prod:/shared
       - ./seafile/conf:/shared/seafile/conf

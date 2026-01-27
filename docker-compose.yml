@@ -58,7 +58,7 @@ services:
       # ---- Bases de datos ----
       - CCNET_DB=ccnet_db
       - SEAFILE_DB=seafile_server
-      - SEAHUB_DB=seahub_db
+      - SEAHUB_DB=seahub_server
 
       # ---- Host/URLs/admin ----
       - SEAFILE_SERVER_HOSTNAME=${DOMAIN}

@@ -44,7 +44,7 @@ services:
     environment:
       # ---- DB host/root ----
       - DB_HOST=db
-      - DB_ROOT_PASSWD=${DB_ROOT_PASSWORD}
+      - DB_ROOT_PASSWD=${DB_ROOT_PASSWD}
       - TIME_ZONE=${TIMEZONE}
 
       # ---- Credenciales del usuario de aplicación ----
@@ -57,7 +57,7 @@ services:
 
       # ---- Bases de datos ----
       - CCNET_DB=ccnet_db
-      - SEAFILE_DB=seafile_db
+      - SEAFILE_DB=seafile_server
       - SEAHUB_DB=seahub_db
 
       # ---- Host/URLs/admin ----

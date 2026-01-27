@@ -43,17 +43,6 @@ services:
         condition: service_started
     environment:
       # ---- DB host/root ----
-      - DB_HOST=db
-      - DB_ROOT_PASSWD=${DB_ROOT_PASSWD}
-      - DB_USER=${SEAFILE_DB_USER}
-      - DB_PASSWD=${SEAFILE_DB_PASS}
-
-      # ---- Bases de datos ----
-      - CCNET_DB=ccnet_db
-      - SEAFILE_DB=seafile_server
-      - SEAHUB_DB=seahub_server
-
-      # ---- Host/URLs/admin ----
       - TIME_ZONE=${TIMEZONE}
       - SEAFILE_SERVER_HOSTNAME=${DOMAIN}
       - SEAFILE_SERVER_PROTOCOL=https

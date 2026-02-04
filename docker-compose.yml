@@ -46,7 +46,7 @@ services:
       - DB_HOST=db
       - DB_USER=${SEAFILE_DB_USER}
       - DB_PASSWD=${SEAFILE_DB_PASS}
-      - CCNET_DB=ccnet_server
+      - CCNET_DB=ccnet_db
       - SEAFILE_DB=seafile_server
       - SEAHUB_DB=seahub_server
 

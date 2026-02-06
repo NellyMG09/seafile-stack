@@ -44,7 +44,7 @@ services:
     environment:
       # ---- DB host/root ----
       - DB_HOST=db
-      - DB_ROOT_PASSWD=${DB_ROOT_PASSWD}
+      - DB_ROOT_PASSWD=Bitala18
       - DB_USER=${SEAFILE_DB_USER}
       - DB_PASSWD=${SEAFILE_DB_PASS}
       - CCNET_DB=ccnet_server

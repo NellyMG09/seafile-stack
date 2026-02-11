@@ -1,7 +1,6 @@
 version: "3.9"
 
 volumes:
-  # Nombres FIJOS para que sea fácil limpiar/respaldar
   seafile_db_prod:
   seafile_data_prod:
 
@@ -16,12 +15,12 @@ services:
       - TZ=${TIMEZONE}
     volumes:
       - seafile_db_prod:/var/lib/mysql
-      #- ./db/init:/docker-entrypoint-initdb.d:ro
     healthcheck:
-      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -P 3306 -uroot -pBitala23 --silent"]
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -P 3306 -uroot -p$${DB_ROOT_PASSWD} --silent"]
       interval: 5s
       timeout: 3s
       retries: 30
+      start_period: 10s
     networks:
       default: {}
       monitoring:
@@ -31,7 +30,7 @@ services:
   memcached:
     image: memcached:1.6
     restart: unless-stopped
-    entrypoint: memcached -m 256
+    command: ["memcached", "-m", "256"]
 
   seafile:
     image: seafileltd/seafile-mc:9.0.10
@@ -42,7 +41,6 @@ services:
       memcached:
         condition: service_started
     environment:
-      # ---- DB host/root ----
       - DB_HOST=db
       - DB_ROOT_PASSWD=${DB_ROOT_PASSWD}
       - DB_USER=${SEAFILE_DB_USER}
@@ -59,8 +57,6 @@ services:
       - SEAFILE_ADMIN_PASSWORD=${SEAFILE_ADMIN_PASSWORD}
     volumes:
       - seafile_data_prod:/shared
-      #- ./seafile/conf:/shared/seafile/conf
-      #- ./ccnet:/shared/ccnet
     healthcheck:
       test: ["CMD", "curl", "-fsS", "http://localhost/"]
       interval: 30s
@@ -87,8 +83,8 @@ services:
       - seafile
       - onlyoffice
     ports:
-      - "9455:9455"   # Seafile (HTTPS terminado en Nginx)
-      - "9458:9458"   # OnlyOffice (HTTPS terminado en Nginx)
+      - "9455:9455"
+      - "9458:9458"
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt:ro
       - ./nginx/logs:/var/log/nginx
@@ -97,7 +93,7 @@ services:
       interval: 30s
       timeout: 5s
       retries: 5
-      
+
 networks:
   monitoring:
     external: true

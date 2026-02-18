@@ -34,6 +34,7 @@ services:
 
   seafile:
     image: seafileltd/seafile-mc:9.0.10
+    platform: linux/amd64
     restart: unless-stopped
     depends_on:
       db:

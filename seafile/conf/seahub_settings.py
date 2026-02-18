@@ -10,13 +10,13 @@ FILE_SERVER_ROOT = f"{SERVICE_URL}/seafhttp/"
 # DB desde entorno (igual que en compose)
 DATABASES = {
   'default': {
-    'ENGINE': 'django.db.backends.mysql',
-    'NAME': 'seahub_db',
-    'USER': os.environ.get('SEAFILE_DB_USER', 'seafile'),
-    'PASSWORD': os.environ.get('SEAFILE_DB_PASS', ''),
-    'HOST': 'db',
-    'PORT': '3306',
-    'OPTIONS': {'charset': 'utf8mb4'},
+    "ENGINE": "django.db.backends.mysql",
+    "NAME": "seahub_server",
+    "USER": "seafile",
+    "PASSWORD": "Bitala25",
+    "HOST": "db",
+    "PORT": "3306",
+    '"OPTIONS": {"charset": "utf8mb4"},
   }
 }
 

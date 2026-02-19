@@ -89,7 +89,7 @@ services:
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt:ro
       - ./nginx/logs:/var/log/nginx
-      - ./nginx/conf.d/seafile.conf:/etc/nginx/conf.d/seafile.conf:ro
+      #- ./nginx/conf.d/seafile.conf:/etc/nginx/conf.d/seafile.conf:ro
     healthcheck:
       test: ["CMD-SHELL", "curl -fk https://127.0.0.1:9455/ >/dev/null 2>&1 || exit 1"]
       interval: 30s
